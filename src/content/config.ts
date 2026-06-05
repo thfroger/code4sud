@@ -4,7 +4,10 @@ const schools = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
-    city: z.enum(['marseille', 'nice']),
+    city: z.union([
+      z.enum(['marseille', 'nice']),
+      z.array(z.enum(['marseille', 'nice']))
+    ]).transform(v => Array.isArray(v) ? v : [v]),
     site: z.string(),
     description: z.string(),
   }),

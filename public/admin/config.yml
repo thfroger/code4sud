@@ -20,12 +20,16 @@ collections:
       - label: Nom de l'école
         name: name
         widget: string
-      - label: Ville
+      - label: Ville(s)
         name: city
-        widget: select
-        options:
-          - { label: Marseille, value: marseille }
-          - { label: Nice, value: nice }
+        widget: list
+        field:
+          label: Ville
+          name: ville
+          widget: select
+          options:
+            - { label: Marseille, value: marseille }
+            - { label: Nice, value: nice }
       - label: Site web
         name: site
         widget: string

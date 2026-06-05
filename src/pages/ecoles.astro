@@ -44,11 +44,13 @@ const all = shuffle(schools);
             target="_blank"
             rel="noopener"
             class="school-card"
-            data-city={school.data.city}
+            data-cities={school.data.city.join(',')}
           >
             <div class="school-card-header">
-              <span class={`city-dot dot--${school.data.city}`}></span>
-              <span class="city-label">{school.data.city === 'marseille' ? 'Marseille' : 'Nice'}</span>
+              {school.data.city.map(c => (
+                <span class={`city-dot dot--${c}`}></span>
+              ))}
+              <span class="city-label">{school.data.city.map(c => c === 'marseille' ? 'Marseille' : 'Nice').join(' · ')}</span>
             </div>
             <div class="school-name">{school.data.name}</div>
             <div class="school-desc">{school.data.description}</div>
@@ -190,7 +192,8 @@ const all = shuffle(schools);
       pill.classList.add('active');
       const filter = pill.dataset.filter;
       cards.forEach(card => {
-        card.style.display = (filter === 'all' || card.dataset.city === filter) ? '' : 'none';
+        const cities = (card.dataset.cities || '').split(',');
+        card.style.display = (filter === 'all' || cities.includes(filter)) ? '' : 'none';
       });
     });
   });
