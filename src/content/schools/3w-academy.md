@@ -1,6 +1,7 @@
 ---
-name: 3W Academy
+name: Rocket School Marseille
 city: marseille
-site: https://3wa.fr
-description: École de web et technologies depuis 2005, spécialisée en développement web et mobile, formations courtes certifiantes.
+site: https://rocket-school.com/campus/marseille/
+description: Accélérer les talents en marketing digital et business development
+  en région Provence-Alpes-Côte d'Azur.
 ---
