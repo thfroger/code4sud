@@ -1,4 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
+const schools = await getCollection('schools');
+const events = await getCollection('events');
+const cities = [...new Set(schools.map(s => s.data.city))].length;
 ---
 <section class="hero">
   <div class="container hero-inner">
@@ -18,15 +22,15 @@
     </div>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-number">9</div>
+        <div class="stat-number">{schools.length}</div>
         <div class="stat-label">Écoles partenaires</div>
       </div>
       <div class="stat">
-        <div class="stat-number">2</div>
+        <div class="stat-number">{cities}</div>
         <div class="stat-label">Villes actives</div>
       </div>
       <div class="stat">
-        <div class="stat-number">4+</div>
+        <div class="stat-number">{events.length}+</div>
         <div class="stat-label">Événements par an</div>
       </div>
     </div>
