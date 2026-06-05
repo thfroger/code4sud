@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 const schools = await getCollection('schools');
 const events = await getCollection('events');
-const cities = [...new Set(schools.map(s => s.data.city))].length;
+const cities = [...new Set(schools.flatMap(s => s.data.city))].length;
 ---
 <section class="hero">
   <div class="container hero-inner">
@@ -30,8 +30,8 @@ const cities = [...new Set(schools.map(s => s.data.city))].length;
         <div class="stat-label">Villes actives</div>
       </div>
       <div class="stat">
-        <div class="stat-number">{events.length}+</div>
-        <div class="stat-label">Événements par an</div>
+        <div class="stat-number">{events.length}</div>
+        <div class="stat-label">Événements organisés depuis 2018</div>
       </div>
     </div>
   </div>
