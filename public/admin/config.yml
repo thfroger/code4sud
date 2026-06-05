@@ -22,14 +22,11 @@ collections:
         widget: string
       - label: Ville(s)
         name: city
-        widget: list
-        field:
-          label: Ville
-          name: ville
-          widget: select
-          options:
-            - { label: Marseille, value: marseille }
-            - { label: Nice, value: nice }
+        widget: select
+        multiple: true
+        options:
+          - { label: Marseille, value: marseille }
+          - { label: Nice, value: nice }
       - label: Site web
         name: site
         widget: string
