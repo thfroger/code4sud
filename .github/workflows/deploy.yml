@@ -21,6 +21,17 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Test Netlify token
+        run: |
+          curl -s -o /tmp/site.json -w "%{http_code}" \
+            -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
+            "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID" | tee /tmp/http_code
+          echo ""
+          cat /tmp/site.json | python3 -c "import sys,json; d=json.load(sys.stdin); print('Site name:', d.get('name', d.get('error','?')))" 2>/dev/null || cat /tmp/site.json
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
       - name: Deploy to Netlify
         run: npx netlify-cli deploy --dir=dist --prod
         env:
