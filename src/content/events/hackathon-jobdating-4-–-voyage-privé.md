@@ -1,5 +1,5 @@
 ---
-title: Hackathon & Jobdating#4 – Voyage Privé
+title: 'Hackathon & Jobdating #4 – Voyage Privé'
 date: 2022-11-14
 type: hackathon
 description: |-
