@@ -1,6 +1,16 @@
 ---
-name: La Plateforme
+name: La Plateforme_
 city: marseille
 site: https://laplateforme.io
-description: École du numérique marseillaise spécialisée en développement, data science, cybersécurité et réseaux & systèmes.
+description: >-
+  La grande école du numérique pour tous !
+
+
+  Des parcours de formations d’excellence en informatique aux frais de scolarité accessibles, ouverts à tous les talents, sans conditions de ressources et de diplômes.
+
+
+  Un lieu de rencontre entre entreprises et apprenants pour le bénéfice de tous !
+
+
+  Le digital c’est maintenant !
 ---
