@@ -1,0 +1,204 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map(event => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await event.render();
+
+const typeLabels: Record<string, string> = {
+  hackathon: 'Hackathon',
+  jobdating: 'Job dating',
+  'talent-day': 'Talent day',
+  atelier: 'Atelier',
+};
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
+}
+---
+<Base title={event.data.title} description={event.data.description}>
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        <a href="/" class="back-link">Accueil</a>
+        <span class="sep">/</span>
+        {typeLabels[event.data.type]}
+      </div>
+      <h1>{event.data.title}</h1>
+      <div class="event-meta-header">
+        <span class="meta-item">{formatDate(event.data.date)}</span>
+        <span class="meta-sep">·</span>
+        <span class="meta-item">{event.data.location}</span>
+        {event.data.status === 'a-venir' && (
+          <span class="badge-upcoming">À venir</span>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container event-layout">
+      <div class="event-content">
+        <p class="event-description">{event.data.description}</p>
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+      <aside class="event-sidebar">
+        <div class="sidebar-block">
+          <div class="sidebar-label">Date</div>
+          <div class="sidebar-value">{formatDate(event.data.date)}</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Lieu</div>
+          <div class="sidebar-value">{event.data.location}</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Type</div>
+          <div class="sidebar-value">{typeLabels[event.data.type]}</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Statut</div>
+          <div class="sidebar-value">
+            {event.data.status === 'a-venir' ? '🟢 À venir' : 'Passé'}
+          </div>
+        </div>
+        <a href="/#evenements" class="sidebar-back">← Tous les événements</a>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-hero {
+  background: var(--b900);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--b200);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+  flex-shrink: 0;
+}
+
+.back-link {
+  color: var(--b200);
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.back-link:hover { color: #fff; }
+
+.sep { opacity: 0.4; }
+
+.page-hero h1 {
+  font-size: clamp(22px, 3.5vw, 38px);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  max-width: 680px;
+}
+
+.event-meta-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  color: var(--b200);
+  font-size: 14px;
+}
+
+.meta-sep {
+  color: var(--b400);
+}
+
+.badge-upcoming {
+  font-size: 11px;
+  color: var(--b800);
+  background: var(--b50);
+  border: 1px solid var(--b100);
+  border-radius: 100px;
+  padding: 0.2rem 0.6rem;
+}
+
+.event-layout {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.event-description {
+  font-size: 16px;
+  color: var(--b900);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.sidebar-block {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid var(--gray-border);
+}
+
+.sidebar-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-secondary);
+  margin-bottom: 0.3rem;
+}
+
+.sidebar-value {
+  font-size: 14px;
+  color: var(--b900);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.sidebar-back {
+  font-size: 13px;
+  color: var(--b600);
+  text-decoration: none;
+  transition: color 0.12s;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.sidebar-back:hover { color: var(--b800); }
+
+@media (max-width: 640px) {
+  .event-layout {
+    grid-template-columns: 1fr;
+  }
+  .event-sidebar {
+    order: -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.5rem;
+  }
+}
+</style>
