@@ -1,9 +1,9 @@
 ---
-title: Talent Day Cyber Campus
+title: Talent Day Campus Cyber
 date: 2025-05-15
 type: talent-day
 description: Journée de rencontres entre les étudiants en fin de formation et les recruteurs des entreprises tech de la région. Retrouvez les entreprises partenaires sur leur stand.
-location: Cyber Campus Provence, Marseille
+location: Campus Cyber Euromed, Marseille
 status: passe
 ---
 
