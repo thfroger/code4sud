@@ -1,0 +1,187 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allPartners = await getCollection('partners');
+const partners = allPartners.filter(p => p.data.active);
+---
+<Base title="Partenaires" description="Les partenaires institutionnels et privés du réseau Code4Sud.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        Ils nous font confiance
+      </div>
+      <h1>Nos partenaires</h1>
+      <p>Institutions publiques, collectivités et entreprises privées qui soutiennent le développement du numérique éducatif en région Sud.</p>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="partners-grid">
+        {partners.map((partner) => (
+          <a
+            href={partner.data.link || '#'}
+            target={partner.data.link ? '_blank' : undefined}
+            rel="noopener"
+            class="partner-card"
+          >
+            {partner.data.logo ? (
+              <img src={partner.data.logo} alt={partner.data.name} class="partner-logo" />
+            ) : (
+              <span class="partner-name">{partner.data.name}</span>
+            )}
+          </a>
+        ))}
+      </div>
+
+      <div class="partner-cta">
+        <h2>Devenir partenaire</h2>
+        <p>Vous souhaitez soutenir la formation numérique en région Sud et accéder aux talents du réseau Code4Sud ?</p>
+        <a href="/contact" class="btn-primary">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-hero {
+  background: var(--b900);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--b200);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+}
+
+.page-hero h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero p {
+  color: var(--b100);
+  font-size: 15px;
+  max-width: 520px;
+  margin: 0;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 0.5px solid var(--gray-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: #fff;
+  border-right: 0.5px solid var(--gray-border);
+  border-bottom: 0.5px solid var(--gray-border);
+  text-decoration: none;
+  transition: background 0.12s;
+  min-height: 90px;
+}
+
+.partner-card:hover {
+  background: var(--b50);
+}
+
+.partner-card:nth-child(5n) {
+  border-right: none;
+}
+
+.partner-logo {
+  max-width: 100px;
+  max-height: 44px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: filter 0.12s, opacity 0.12s;
+}
+
+.partner-card:hover .partner-logo {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.partner-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-secondary);
+  text-align: center;
+  line-height: 1.4;
+  transition: color 0.12s;
+}
+
+.partner-card:hover .partner-name {
+  color: var(--b800);
+}
+
+.partner-cta {
+  border-top: 0.5px solid var(--gray-border);
+  padding-top: 2.5rem;
+  max-width: 480px;
+}
+
+.partner-cta h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--b900);
+  margin-bottom: 0.5rem;
+}
+
+.partner-cta p {
+  font-size: 14px;
+  color: var(--gray-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--b800);
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+
+.btn-primary:hover {
+  background: var(--b900);
+}
+
+@media (max-width: 640px) {
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .partner-card:nth-child(5n) {
+    border-right: 0.5px solid var(--gray-border);
+  }
+  .partner-card:nth-child(3n) {
+    border-right: none;
+  }
+}
+</style>

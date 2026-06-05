@@ -1,0 +1,266 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Contact" description="Contactez l'association Code4Sud — rejoindre le réseau, devenir partenaire, organiser un événement.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        Restons en contact
+      </div>
+      <h1>Nous contacter</h1>
+      <p>Une question, une idée de partenariat, ou envie de rejoindre le réseau ? Écrivez-nous.</p>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container contact-layout">
+      <div class="contact-form-wrap">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          class="contact-form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>Ne pas remplir si vous êtes humain : <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required placeholder="Marie" />
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required placeholder="Dupont" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" required placeholder="marie.dupont@exemple.fr" />
+          </div>
+
+          <div class="form-group">
+            <label for="organisation">Organisation <span class="optional">(optionnel)</span></label>
+            <input type="text" id="organisation" name="organisation" placeholder="Nom de votre école, entreprise…" />
+          </div>
+
+          <div class="form-group">
+            <label for="sujet">Sujet</label>
+            <select id="sujet" name="sujet" required>
+              <option value="" disabled selected>Choisir un sujet…</option>
+              <option value="partenariat">Devenir partenaire</option>
+              <option value="ecole">Rejoindre en tant qu'école</option>
+              <option value="evenement">Organiser un événement</option>
+              <option value="presse">Demande presse</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="5" placeholder="Décrivez votre demande…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Envoyer le message</button>
+        </form>
+      </div>
+
+      <aside class="contact-info">
+        <div class="info-block">
+          <div class="info-label">Association</div>
+          <div class="info-value">Code4Sud<br>Association loi 1901</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Zones d'activité</div>
+          <div class="info-value">Marseille<br>Nice<br>Région Sud</div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">YouTube</div>
+          <a href="https://www.youtube.com/@code4sud" target="_blank" rel="noopener" class="info-link">
+            youtube.com/@code4sud →
+          </a>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Nos écoles</div>
+          <a href="/ecoles" class="info-link">Voir les 9 écoles partenaires →</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-hero {
+  background: var(--b900);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--b200);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+}
+
+.page-hero h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero p {
+  color: var(--b100);
+  font-size: 15px;
+  max-width: 500px;
+  margin: 0;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--b900);
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--gray-secondary);
+}
+
+input, select, textarea {
+  border: 1px solid var(--gray-border);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--b900);
+  background: #fff;
+  transition: border-color 0.12s;
+  outline: none;
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--b400);
+}
+
+input::placeholder, textarea::placeholder {
+  color: #9CA3AF;
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.btn-submit {
+  background: var(--b800);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.65rem 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.12s;
+  align-self: flex-start;
+}
+
+.btn-submit:hover {
+  background: var(--b900);
+}
+
+.hidden {
+  display: none;
+}
+
+.info-block {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.5px solid var(--gray-border);
+}
+
+.info-block:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.info-value {
+  font-size: 14px;
+  color: var(--b900);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.info-link {
+  font-size: 13px;
+  color: var(--b600);
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.info-link:hover {
+  color: var(--b800);
+}
+
+@media (max-width: 640px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .contact-info {
+    order: -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.5rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

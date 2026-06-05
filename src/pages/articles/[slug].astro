@@ -1,0 +1,149 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
+}
+---
+<Base title={article.data.title} description={article.data.title}>
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        <a href="/articles" class="back-link">Articles</a>
+        <span class="sep">/</span>
+        {article.data.category}
+      </div>
+      <h1>{article.data.title}</h1>
+      <div class="article-meta">{formatDate(article.data.date)}</div>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container article-container">
+      <div class="prose">
+        <Content />
+      </div>
+      <aside class="article-sidebar">
+        <div class="sidebar-block">
+          <div class="sidebar-label">Catégorie</div>
+          <div class="sidebar-value">{article.data.category}</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Date</div>
+          <div class="sidebar-value">{formatDate(article.data.date)}</div>
+        </div>
+        <a href="/articles" class="sidebar-back">← Retour aux articles</a>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-hero {
+  background: var(--b900);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--b200);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+  flex-shrink: 0;
+}
+
+.back-link {
+  color: var(--b200);
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.back-link:hover {
+  color: #fff;
+}
+
+.sep {
+  opacity: 0.4;
+}
+
+.page-hero h1 {
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  max-width: 700px;
+}
+
+.article-meta {
+  color: var(--b200);
+  font-size: 13px;
+}
+
+.article-container {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.sidebar-block {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid var(--gray-border);
+}
+
+.sidebar-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-secondary);
+  margin-bottom: 0.3rem;
+}
+
+.sidebar-value {
+  font-size: 14px;
+  color: var(--b900);
+  font-weight: 500;
+}
+
+.sidebar-back {
+  font-size: 13px;
+  color: var(--b600);
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.sidebar-back:hover {
+  color: var(--b800);
+}
+
+@media (max-width: 640px) {
+  .article-container {
+    grid-template-columns: 1fr;
+  }
+  .article-sidebar {
+    order: -1;
+  }
+}
+</style>

@@ -1,0 +1,131 @@
+---
+---
+<div class="video-grid">
+  <div class="video-text">
+    <div class="section-meta">
+      <span class="section-number">05</span>
+      <span class="section-label">Nos événements en vidéo</span>
+    </div>
+    <h2>Revivez l'ambiance de nos événements</h2>
+    <p>
+      Hackathons, job datings, ateliers de code — retrouvez les temps forts de Code4Sud sur notre chaîne YouTube. Témoignages d'étudiants, recruteurs et partenaires.
+    </p>
+    <a href="https://www.youtube.com/@code4sud" target="_blank" rel="noopener" class="video-cta">
+      Voir la chaîne YouTube →
+    </a>
+  </div>
+  <div class="video-placeholder">
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed?listType=user_uploads&list=code4sud"
+      title="Code4Sud — chaîne YouTube"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      class="video-iframe"
+    ></iframe>
+    <div class="video-fallback" id="video-fallback">
+      <a href="https://www.youtube.com/@code4sud" target="_blank" rel="noopener" class="play-btn" aria-label="Voir sur YouTube">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </a>
+      <p class="fallback-label">Voir sur YouTube →</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.video-text h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--b900);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.video-text p {
+  font-size: 14px;
+  color: var(--gray-secondary);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.video-cta {
+  font-size: 14px;
+  color: var(--b600);
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.video-cta:hover {
+  color: var(--b800);
+}
+
+.video-placeholder {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: var(--b50);
+  border: 1px solid var(--b100);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.video-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--b800);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.12s;
+  padding-left: 3px;
+}
+
+.play-btn:hover {
+  background: var(--b900);
+}
+
+.fallback-label {
+  font-size: 13px;
+  color: var(--b600);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+</style>

@@ -1,0 +1,143 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(href));
+---
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="logo">Code<span class="logo-4">4</span>Sud</a>
+    <ul class="nav-links">
+      <li><a href="/ecoles" class:list={['nav-link', { 'nav-link--active': isActive('/ecoles') }]}>Écoles</a></li>
+      <li><a href="/realisations" class:list={['nav-link', { 'nav-link--active': isActive('/realisations') }]}>Réalisations</a></li>
+      <li><a href="/articles" class:list={['nav-link', { 'nav-link--active': isActive('/articles') }]}>Articles</a></li>
+      <li><a href="/partenaires" class:list={['nav-link', { 'nav-link--active': isActive('/partenaires') }]}>Partenaires</a></li>
+      <li><a href="/contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="/ecoles">Écoles</a>
+    <a href="/realisations">Réalisations</a>
+    <a href="/articles">Articles</a>
+    <a href="/partenaires">Partenaires</a>
+    <a href="/contact">Contact</a>
+  </div>
+</nav>
+
+<style>
+.nav {
+  background: #fff;
+  border-bottom: 0.5px solid var(--gray-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.logo {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--b900);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-4 {
+  color: var(--b400);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--gray-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.12s;
+}
+
+.nav-link:hover,
+.nav-link--active {
+  color: var(--b900);
+}
+
+.nav-cta {
+  background: var(--b800);
+  color: #fff;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background 0.12s;
+}
+
+.nav-cta:hover {
+  background: var(--b900);
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-burger span {
+  width: 20px;
+  height: 1.5px;
+  background: var(--b900);
+  display: block;
+}
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  padding: 0.75rem 2rem 1rem;
+  border-top: 0.5px solid var(--gray-border);
+  gap: 0.25rem;
+}
+
+.nav-mobile a {
+  color: var(--gray-secondary);
+  font-size: 14px;
+  padding: 0.4rem 0;
+  display: block;
+}
+
+.nav-mobile.open {
+  display: flex;
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+  .nav-burger {
+    display: flex;
+  }
+}
+</style>
+
+<script>
+  const burger = document.getElementById('nav-burger');
+  const mobile = document.getElementById('nav-mobile');
+  burger?.addEventListener('click', () => {
+    mobile?.classList.toggle('open');
+  });
+</script>

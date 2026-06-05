@@ -1,0 +1,157 @@
+---
+---
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-col footer-col--main">
+      <div class="footer-logo">Code<span>4</span>Sud</div>
+      <p class="footer-desc">
+        Fédération des écoles du numérique en région Sud. Marseille &amp; Nice.
+      </p>
+      <div class="footer-social">
+        <a href="https://www.youtube.com/@code4sud" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1C4.5 20.4 12 20.4 12 20.4s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/company/code4sud" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.45 20.45h-3.55V14.9c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.65H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Navigation</div>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/ecoles">Écoles</a></li>
+        <li><a href="/realisations">Réalisations</a></li>
+        <li><a href="/articles">Articles</a></li>
+        <li><a href="/partenaires">Partenaires</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Écoles</div>
+      <ul>
+        <li><a href="/ecoles">Le Wagon</a></li>
+        <li><a href="/ecoles">Simplon</a></li>
+        <li><a href="/ecoles">Wild Code School</a></li>
+        <li><a href="/ecoles">La Plateforme</a></li>
+        <li><a href="/ecoles">Web@cademie</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-label">Ressources</div>
+      <ul>
+        <li><a href="/contact">Nous contacter</a></li>
+        <li><a href="https://www.youtube.com/@code4sud" target="_blank" rel="noopener">Chaîne YouTube</a></li>
+        <li><a href="/admin/">Administration</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© 2025 Code4Sud — Association loi 1901</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--b900);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.footer-logo {
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.footer-logo span {
+  color: var(--b400);
+}
+
+.footer-desc {
+  color: var(--b200);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer-social a {
+  color: var(--b200);
+  transition: color 0.12s;
+}
+
+.footer-social a:hover {
+  color: #fff;
+}
+
+.footer-col-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--b400);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-col ul a {
+  color: var(--b200);
+  font-size: 13px;
+  transition: color 0.12s;
+}
+
+.footer-col ul a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 0.5px solid rgba(133, 183, 235, 0.2);
+  padding: 1rem 0;
+}
+
+.footer-bottom span {
+  color: rgba(133, 183, 235, 0.5);
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .footer-col--main {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,0 +1,146 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const articles = allArticles.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
+}
+---
+<Base title="Articles" description="Actualités, rapports et retours d'expérience du réseau Code4Sud.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        Le réseau en action
+      </div>
+      <h1>Articles &amp; actualités</h1>
+      <p>Retours d'événements, rapports d'activité et analyses sur le numérique éducatif en région Sud.</p>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="articles-grid">
+        {articles.map((article) => (
+          <a href={`/articles/${article.slug}`} class="article-card">
+            <div class="article-img">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <div class="article-body">
+              <div class="article-category">{article.data.category}</div>
+              <div class="article-title">{article.data.title}</div>
+              <div class="article-date">{formatDate(article.data.date)}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-hero {
+  background: var(--b900);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--b200);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+}
+
+.page-hero h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero p {
+  color: var(--b100);
+  font-size: 15px;
+  max-width: 500px;
+  margin: 0;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border: 0.5px solid var(--gray-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.12s;
+}
+
+.article-card:hover .article-title {
+  color: var(--b600);
+}
+
+.article-img {
+  background: var(--b50);
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--b200);
+}
+
+.article-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.article-category {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--b600);
+}
+
+.article-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--b900);
+  line-height: 1.4;
+  transition: color 0.12s;
+}
+
+.article-date {
+  font-size: 12px;
+  color: var(--gray-secondary);
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .articles-grid { grid-template-columns: 1fr; }
+}
+</style>

@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+
+const allPartners = await getCollection('partners');
+const partners = allPartners.filter(p => p.data.active);
+---
+<div class="partners-grid">
+  {partners.map((partner) => (
+    <a
+      href={partner.data.link || '#'}
+      target={partner.data.link ? '_blank' : undefined}
+      rel="noopener"
+      class="partner-card"
+    >
+      {partner.data.logo ? (
+        <img src={partner.data.logo} alt={partner.data.name} class="partner-logo" />
+      ) : (
+        <span class="partner-name">{partner.data.name}</span>
+      )}
+    </a>
+  ))}
+</div>
+
+<style>
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 0.5px solid var(--gray-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  background: #fff;
+  border-right: 0.5px solid var(--gray-border);
+  border-bottom: 0.5px solid var(--gray-border);
+  text-decoration: none;
+  transition: background 0.12s;
+  min-height: 80px;
+}
+
+.partner-card:hover {
+  background: var(--b50);
+}
+
+.partner-card:nth-child(5n) {
+  border-right: none;
+}
+
+.partner-logo {
+  max-width: 100px;
+  max-height: 40px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: filter 0.12s, opacity 0.12s;
+}
+
+.partner-card:hover .partner-logo {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.partner-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-secondary);
+  text-align: center;
+  line-height: 1.3;
+  transition: color 0.12s;
+}
+
+.partner-card:hover .partner-name {
+  color: var(--b800);
+}
+
+@media (max-width: 640px) {
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .partner-card:nth-child(5n) {
+    border-right: 0.5px solid var(--gray-border);
+  }
+  .partner-card:nth-child(3n) {
+    border-right: none;
+  }
+}
+</style>

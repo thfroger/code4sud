@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SchoolsGrid from '../components/SchoolsGrid.astro';
+import EventsList from '../components/EventsList.astro';
+import RealisationsGrid from '../components/RealisationsGrid.astro';
+import VideoSection from '../components/VideoSection.astro';
+import ArticlesGrid from '../components/ArticlesGrid.astro';
+import PartnersGrid from '../components/PartnersGrid.astro';
+---
+<Base title="Accueil" description="Code4Sud — Fédération des écoles du numérique en région Sud. Marseille & Nice.">
+  <Hero />
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-meta">
+        <span class="section-number">01</span>
+        <span class="section-label">Les écoles du réseau</span>
+      </div>
+      <div class="section-head">
+        <h2>9 écoles partenaires<br>à Marseille et Nice</h2>
+        <a href="/ecoles" class="section-more">Voir toutes les écoles →</a>
+      </div>
+      <SchoolsGrid />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-meta">
+        <span class="section-number">02</span>
+        <span class="section-label">Événements</span>
+      </div>
+      <div class="section-head">
+        <h2>Hackathons, job datings &amp; ateliers</h2>
+        <a href="/realisations" class="section-more">Voir tout →</a>
+      </div>
+      <EventsList limit={4} />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-meta">
+        <span class="section-number">03</span>
+        <span class="section-label">Réalisations</span>
+      </div>
+      <div class="section-head">
+        <h2>Ce que nous avons accompli</h2>
+        <a href="/realisations" class="section-more">Voir tout →</a>
+      </div>
+      <RealisationsGrid limit={4} />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <VideoSection />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-meta">
+        <span class="section-number">06</span>
+        <span class="section-label">Articles</span>
+      </div>
+      <div class="section-head">
+        <h2>Actualités du réseau</h2>
+        <a href="/articles" class="section-more">Tous les articles →</a>
+      </div>
+      <ArticlesGrid limit={3} />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-meta">
+        <span class="section-number">07</span>
+        <span class="section-label">Partenaires</span>
+      </div>
+      <h2 style="margin-bottom: 1.5rem;">Ils nous font confiance</h2>
+      <PartnersGrid />
+    </div>
+  </section>
+</Base>
+
+<style>
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  font-size: 1.25rem;
+  color: var(--b900);
+  margin: 0;
+}
+
+.section-more {
+  font-size: 13px;
+  color: var(--b600);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.12s;
+}
+
+.section-more:hover {
+  color: var(--b800);
+}
+</style>

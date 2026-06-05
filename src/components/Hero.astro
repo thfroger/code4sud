@@ -1,0 +1,163 @@
+---
+---
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-body">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        Association — Marseille &amp; Nice
+      </div>
+      <h1>Fédérer les acteurs<br>du numérique éducatif<br>dans le Sud</h1>
+      <p class="hero-subtitle">
+        Code4Sud réunit les écoles du numérique, les entreprises partenaires et les institutions pour développer les talents tech en région Sud.
+      </p>
+      <div class="hero-actions">
+        <a href="/ecoles" class="btn-white">Découvrir les écoles</a>
+        <a href="/contact" class="btn-ghost">Rejoindre le réseau</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">9</div>
+        <div class="stat-label">Écoles partenaires</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Villes actives</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Événements par an</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero {
+  background: var(--b900);
+  padding: 5rem 0 4rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--b200);
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+  flex-shrink: 0;
+}
+
+h1 {
+  font-size: clamp(34px, 5.5vw, 58px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.08;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-subtitle {
+  color: var(--b100);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 540px;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-white {
+  background: #fff;
+  color: var(--b900);
+  padding: 0.55rem 1.25rem;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.12s;
+}
+
+.btn-white:hover {
+  opacity: 0.88;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.55rem 1.25rem;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: border-color 0.12s;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 3.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1.25rem 1.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--b100);
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 3rem 0 2.5rem;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+  .stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .stat:last-child {
+    border-bottom: none;
+  }
+}
+</style>

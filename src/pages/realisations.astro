@@ -1,0 +1,170 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const allReals = await getCollection('realisations');
+const reals = allReals.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const typeLabels: Record<string, string> = {
+  hackathon: 'Hackathon',
+  application: 'Application',
+  evenement: 'Événement',
+  formation: 'Formation',
+};
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(date);
+}
+---
+<Base title="Réalisations" description="Les réalisations de Code4Sud — hackathons, applications, événements et formations en région Sud.">
+  <div class="page-hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        Ce que nous avons accompli
+      </div>
+      <h1>Réalisations</h1>
+      <p>Hackathons, applications, événements et formations organisés par le réseau Code4Sud.</p>
+    </div>
+  </div>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="pill-filters" id="real-filters">
+        <button class="pill active" data-filter="all">Tous</button>
+        <button class="pill" data-filter="hackathon">Hackathon</button>
+        <button class="pill" data-filter="application">Application</button>
+        <button class="pill" data-filter="evenement">Événement</button>
+        <button class="pill" data-filter="formation">Formation</button>
+      </div>
+
+      <div class="reals-list" id="reals-grid">
+        {reals.map((real) => (
+          <div class="real-row" data-type={real.data.type}>
+            <div class="real-date">{formatDate(real.data.date)}</div>
+            <div class="real-main">
+              <div class="real-type">{typeLabels[real.data.type]}</div>
+              <div class="real-title">{real.data.title}</div>
+              <div class="real-desc">{real.data.description}</div>
+            </div>
+            {real.data.featured && <span class="real-featured">Mise en avant</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.page-hero {
+  background: var(--b900);
+  padding: 3.5rem 0 3rem;
+}
+
+.hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--b200);
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.tag-line {
+  width: 24px;
+  height: 1px;
+  background: var(--b200);
+}
+
+.page-hero h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero p {
+  color: var(--b100);
+  font-size: 15px;
+  max-width: 500px;
+  margin: 0;
+}
+
+.reals-list {
+  border-top: 0.5px solid var(--gray-border);
+}
+
+.real-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: start;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 0.5px solid var(--gray-border);
+}
+
+.real-date {
+  font-size: 13px;
+  color: var(--gray-secondary);
+  padding-top: 0.15rem;
+}
+
+.real-type {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--b600);
+  margin-bottom: 0.25rem;
+}
+
+.real-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--b900);
+  margin-bottom: 0.35rem;
+}
+
+.real-desc {
+  font-size: 13px;
+  color: var(--gray-secondary);
+  line-height: 1.5;
+}
+
+.real-featured {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--b800);
+  background: var(--b50);
+  border: 1px solid var(--b100);
+  border-radius: 100px;
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
+  align-self: start;
+}
+
+@media (max-width: 480px) {
+  .real-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .real-date {
+    display: none;
+  }
+}
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('#real-filters .pill');
+  const realRows = document.querySelectorAll<HTMLElement>('#reals-grid .real-row');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      realRows.forEach(row => {
+        row.style.display = (filter === 'all' || row.dataset.type === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>

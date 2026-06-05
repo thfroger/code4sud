@@ -1,0 +1,169 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+locale: fr
+
+collections:
+  - name: schools
+    label: Écoles
+    label_singular: École
+    folder: src/content/schools
+    create: true
+    slug: "{{fields.name | slugify}}"
+    fields:
+      - label: Nom de l'école
+        name: name
+        widget: string
+      - label: Ville
+        name: city
+        widget: select
+        options:
+          - { label: Marseille, value: marseille }
+          - { label: Nice, value: nice }
+      - label: Site web
+        name: site
+        widget: string
+        hint: URL complète (https://…)
+      - label: Description courte
+        name: description
+        widget: text
+
+  - name: events
+    label: Événements
+    label_singular: Événement
+    folder: src/content/events
+    create: true
+    slug: "{{fields.title | slugify}}"
+    fields:
+      - label: Titre
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+      - label: Type
+        name: type
+        widget: select
+        options:
+          - { label: Hackathon, value: hackathon }
+          - { label: Job dating, value: jobdating }
+          - { label: Talent day, value: talent-day }
+          - { label: Atelier, value: atelier }
+      - label: Description
+        name: description
+        widget: text
+      - label: Lieu
+        name: location
+        widget: string
+      - label: Statut
+        name: status
+        widget: select
+        options:
+          - { label: À venir, value: a-venir }
+          - { label: Passé, value: passe }
+      - label: Image
+        name: image
+        widget: image
+        required: false
+      - label: Contenu
+        name: body
+        widget: markdown
+        required: false
+
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: src/content/articles
+    create: true
+    slug: "{{fields.title | slugify}}"
+    fields:
+      - label: Titre
+        name: title
+        widget: string
+      - label: Date
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+      - label: Catégorie
+        name: category
+        widget: string
+        hint: ex. Actualité, Événement, Rapport
+      - label: Image de couverture
+        name: image
+        widget: image
+        required: false
+      - label: Contenu
+        name: body
+        widget: markdown
+
+  - name: partners
+    label: Partenaires
+    label_singular: Partenaire
+    folder: src/content/partners
+    create: true
+    slug: "{{fields.name | slugify}}"
+    extension: yaml
+    format: yaml
+    fields:
+      - label: Nom
+        name: name
+        widget: string
+      - label: Logo
+        name: logo
+        widget: image
+        required: false
+      - label: Lien
+        name: link
+        widget: string
+        required: false
+        hint: URL complète (https://…)
+      - label: Actif
+        name: active
+        widget: boolean
+        default: true
+
+  - name: realisations
+    label: Réalisations
+    label_singular: Réalisation
+    folder: src/content/realisations
+    create: true
+    slug: "{{fields.title | slugify}}"
+    fields:
+      - label: Titre
+        name: title
+        widget: string
+      - label: Type
+        name: type
+        widget: select
+        options:
+          - { label: Hackathon, value: hackathon }
+          - { label: Application, value: application }
+          - { label: Événement, value: evenement }
+          - { label: Formation, value: formation }
+      - label: Date
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD/MM/YYYY"
+        time_format: false
+      - label: Description courte
+        name: description
+        widget: text
+      - label: Mise en avant
+        name: featured
+        widget: boolean
+        default: false
+        hint: Afficher en carte principale (grande, bleue)
+      - label: Contenu
+        name: body
+        widget: markdown
+        required: false
