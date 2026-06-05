@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: thfroger/code4sud
   branch: main
+  base_url: https://sveltia-cms-auth.froger-thomas.workers.dev
 
 media_folder: public/images/uploads
 public_folder: /images/uploads
