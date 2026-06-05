@@ -1,6 +1,7 @@
 ---
 name: 42 Nice
-city: nice
+city:
+  - nice
 site: https://42nice.fr/
 description: |-
   Apprendre le code. Casser les codes.
