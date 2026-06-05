@@ -2,9 +2,17 @@
 import { getCollection } from 'astro:content';
 
 const schools = await getCollection('schools');
-const marseille = schools.filter(s => s.data.city === 'marseille');
-const nice = schools.filter(s => s.data.city === 'nice');
-const all = [...marseille, ...nice];
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const all = shuffle(schools);
 ---
 <div class="schools-section">
   <div class="pill-filters">
