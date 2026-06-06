@@ -1,9 +1,10 @@
 ---
 title: Code In The Dark
 date: 2025-09-15
-type: atelier
+type:
+  - atelier
 description: Compétition de live coding dans le noir total. Les participants doivent recréer une interface en CSS sans pouvoir prévisualiser leur code. Ambiance électro garantie.
-location: Palais du Pharo
+location: Palais du Pharo, Marseille
 status: passe
 image: /images/uploads/[SUD] Post RS_Le Grand Bain x C4S.png
 ---
