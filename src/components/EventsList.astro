@@ -34,7 +34,7 @@ function formatDate(date: Date) {
     <a href={`/evenements/${event.slug}`} class="event-row">
       <div class="event-date">{formatDate(event.data.date)}</div>
       <div class="event-main">
-        <div class="event-type">{typeLabels[event.data.type] || event.data.type}</div>
+        <div class="event-type">{event.data.type.map(t => typeLabels[t] || t).join(' · ')}</div>
         <div class="event-title">{event.data.title}</div>
         <div class="event-location">{event.data.location}</div>
       </div>

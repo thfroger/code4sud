@@ -51,9 +51,10 @@ collections:
         format: "YYYY-MM-DD"
         date_format: "DD/MM/YYYY"
         time_format: false
-      - label: Type
+      - label: Type(s)
         name: type
         widget: select
+        multiple: true
         options:
           - { label: Hackathon, value: hackathon }
           - { label: Job dating, value: jobdating }

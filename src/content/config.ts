@@ -18,7 +18,10 @@ const events = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
-    type: z.enum(['hackathon', 'jobdating', 'talent-day', 'atelier']),
+    type: z.union([
+      z.enum(['hackathon', 'jobdating', 'talent-day', 'atelier']),
+      z.array(z.enum(['hackathon', 'jobdating', 'talent-day', 'atelier']))
+    ]).transform(v => Array.isArray(v) ? v : [v]),
     description: z.string(),
     location: z.string(),
     status: z.enum(['passe', 'a-venir']),
