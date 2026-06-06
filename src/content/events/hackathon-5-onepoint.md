@@ -1,7 +1,9 @@
 ---
 title: Hackathon & Jobdating#5 - Onepoint
 date: 2024-10-02
-type: hackathon
+type:
+  - hackathon
+  - jobdating
 description: 5ème édition du Hackathon
 location: QG de Onepoint, Aix-en-Provence
 status: passe
