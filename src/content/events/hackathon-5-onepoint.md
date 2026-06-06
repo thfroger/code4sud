@@ -1,5 +1,5 @@
 ---
-title: Hackathon & Jobdating#5 - Onepoint
+title: 'Hackathon & Jobdating #5 - Onepoint'
 date: 2024-10-02
 type:
   - hackathon
