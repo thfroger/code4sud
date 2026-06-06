@@ -1,7 +1,9 @@
 ---
 title: 'Hackathon & Jobdating #4 – Voyage Privé'
 date: 2022-11-14
-type: hackathon
+type:
+  - hackathon
+  - jobdating
 description: |-
   Après trois éditions au sein de lieux emblématiques de Marseille, le Hackathon & Jobdating de Code4Marseille a changé d’air et s’est invité… au Stade de Rugby Maurice David à Aix-en-Provence !
 
