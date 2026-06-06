@@ -1,7 +1,9 @@
 ---
 title: 'Hackathon & Jobdating #1 - Frioul'
 date: 2018-10-11
-type: hackathon
+type:
+  - hackathon
+  - jobdating
 description: |-
   1er événement de Code4Marseille: Hackathon+Jobdating sur les îles du Frioul le 11 et 12 octobre 2018.
 
