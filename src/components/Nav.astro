@@ -4,7 +4,9 @@ const isActive = (href: string) => pathname === href || (href !== '/' && pathnam
 ---
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="/" class="logo">Code<span class="logo-4">4</span>Sud</a>
+    <a href="/" class="logo">
+      <img src="/logo-code4sud.png" alt="Code4Sud" class="logo-img" />
+    </a>
     <ul class="nav-links">
       <li><a href="/ecoles" class:list={['nav-link', { 'nav-link--active': isActive('/ecoles') }]}>Écoles</a></li>
       <li><a href="/evenements" class:list={['nav-link', { 'nav-link--active': isActive('/evenements') }]}>Événements</a></li>
@@ -44,15 +46,16 @@ const isActive = (href: string) => pathname === href || (href !== '/' && pathnam
 }
 
 .logo {
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--b900);
   text-decoration: none;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
-.logo-4 {
-  color: var(--b400);
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
