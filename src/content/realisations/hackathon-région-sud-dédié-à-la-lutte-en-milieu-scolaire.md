@@ -3,7 +3,7 @@ title: Hackathon Région Sud dédié à la lutte en milieu scolaire
 type: hackathon
 date: 2025-03-15
 description: lklmk
-featured: false
+featured: true
 ---
 
 Les 15 mars, 4 et 5 avril 2025, la Région Sud, en partenariat avec le Parlement Régional de la Jeunesse (PRJ) et l'association Code4Sud, a organisé un hackathon inédit consacré à la lutte contre le harcèlement en milieu scolaire.
