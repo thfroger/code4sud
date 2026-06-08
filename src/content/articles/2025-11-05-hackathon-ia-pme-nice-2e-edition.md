@@ -1,7 +1,8 @@
 ---
 title: "2e hackathon « L'IA au service des PME » : rendez-vous à Nice les 12, 13 et 14 novembre"
 date: 2025-11-05
-category: "Hackathon"
+category: Hackathon
+image: '/images/uploads/art_hackathon #2.jpeg'
 ---
 
 Après la réussite de sa première édition azuréenne, Code4Sud revient les 12, 13 et 14 novembre à Nice pour son 2e hackathon au Hub de l'Innovation Métropole Nice Côte d'Azur, avec le soutien de la Métropole Nice Côte d'Azur.
