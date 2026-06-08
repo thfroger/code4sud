@@ -1,7 +1,8 @@
 ---
 title: "Hackathon Code4Sud : l'IA au service des enjeux environnementaux du territoire"
 date: 2024-09-30
-category: "Hackathon"
+category: Hackathon
+image: /images/uploads/art_onepoint.jpeg
 ---
 
 L'intelligence artificielle au service des enjeux environnementaux du territoire ? C'est le challenge qu'a lancé Code4Sud à 9 écoles de formation web marseillaises.
