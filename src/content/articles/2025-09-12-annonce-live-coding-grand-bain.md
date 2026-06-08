@@ -1,7 +1,8 @@
 ---
-title: "Live coding au Grand Bain : relevez le défi le 15 septembre à Marseille"
+title: 'Live coding au Grand Bain : relevez le défi le 15 septembre à Marseille'
 date: 2025-09-12
-category: "Événement"
+category: Événement
+image: /images/uploads/[SUD] Post RS_Le Grand Bain x C4S.png
 ---
 
 Code4Sud et Dev-id lancent un challenge de live coding lundi prochain à l'événement de La French Tech Aix-Marseille Région Sud : Le Grand Bain.
