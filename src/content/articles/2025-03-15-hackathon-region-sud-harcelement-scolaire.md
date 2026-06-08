@@ -1,7 +1,8 @@
 ---
 title: "Hackathon Code4Sud × Région Sud : l'IA contre le harcèlement scolaire"
-date: 2025-03-15
-category: "Hackathon"
+date: 2025-03-20
+category: Hackathon
+image: /images/uploads/art_region.jpeg
 ---
 
 Le 15 mars dernier, Code4Sud a fait son retour avec un nouveau hackathon en collaboration avec la Région Sud - Provence-Alpes-Côte d'Azur.
