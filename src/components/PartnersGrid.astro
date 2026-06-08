@@ -52,6 +52,7 @@ const partners = allPartners.filter(p => p.data.active);
 }
 
 .partner-logo {
+  width: 100%;
   max-width: 100px;
   max-height: 40px;
   object-fit: contain;
@@ -82,10 +83,29 @@ const partners = allPartners.filter(p => p.data.active);
   .partners-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  .partner-card {
+    padding: 1rem 0.5rem;
+  }
   .partner-card:nth-child(5n) {
     border-right: 0.5px solid var(--gray-border);
   }
   .partner-card:nth-child(3n) {
+    border-right: none;
+  }
+  .partner-logo {
+    max-width: 80px;
+    max-height: 32px;
+  }
+}
+
+@media (max-width: 380px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .partner-card:nth-child(3n) {
+    border-right: 0.5px solid var(--gray-border);
+  }
+  .partner-card:nth-child(2n) {
     border-right: none;
   }
 }
