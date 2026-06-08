@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+const schools = await getCollection('schools');
+const sorted = schools
+  .filter(s => s.data.logo)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, 'fr', { sensitivity: 'base' }));
+---
+
+{sorted.length > 0 && (
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      {[...sorted, ...sorted].map((school) => (
+        <a
+          href={school.data.site}
+          target="_blank"
+          rel="noopener"
+          class="ticker-item"
+          title={school.data.name}
+        >
+          <img src={school.data.logo} alt={school.data.name} />
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+.ticker-wrap {
+  overflow: hidden;
+  border-bottom: 0.5px solid var(--gray-border);
+  padding: 1.25rem 0;
+  /* fade edges */
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  transition: filter 0.2s;
+  filter: grayscale(1) opacity(0.5);
+}
+
+.ticker-item:hover {
+  filter: grayscale(0) opacity(1);
+}
+
+.ticker-item img {
+  height: 40px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+}
+</style>

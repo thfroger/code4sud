@@ -7,6 +7,7 @@ import RealisationsGrid from '../components/RealisationsGrid.astro';
 import VideoSection from '../components/VideoSection.astro';
 import ArticlesGrid from '../components/ArticlesGrid.astro';
 import PartnersGrid from '../components/PartnersGrid.astro';
+import SchoolsTicker from '../components/SchoolsTicker.astro';
 import { getCollection } from 'astro:content';
 const schools = await getCollection('schools');
 const marseille = schools.filter(s => s.data.city.includes('marseille')).length;
@@ -14,6 +15,7 @@ const nice = schools.filter(s => s.data.city.includes('nice')).length;
 ---
 <Base title="Accueil" description="Code4Sud — Fédération des écoles du numérique en région Sud. Marseille & Nice.">
   <Hero />
+  <SchoolsTicker />
 
   <section class="page-section">
     <div class="container">

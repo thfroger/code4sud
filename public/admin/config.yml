@@ -31,6 +31,11 @@ collections:
         name: site
         widget: string
         hint: URL complète (https://…)
+      - label: Logo
+        name: logo
+        widget: image
+        required: false
+        hint: Logo de l'école (fond transparent de préférence)
       - label: Description courte
         name: description
         widget: text
