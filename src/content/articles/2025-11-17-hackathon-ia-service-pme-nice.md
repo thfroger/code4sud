@@ -2,7 +2,7 @@
 title: Finale du hackathon « L'IA au service des PME » à Nice
 date: 2025-11-17
 category: Hackathon
-image: '/images/uploads/art_hackathon #2.jpeg'
+image: /images/uploads/test-art_hack2.jpeg
 ---
 
 Vendredi dernier a eu lieu la grande finale du hackathon azuréen « L'IA au service des PME », en collaboration avec la Métropole Nice Côte d'Azur, au Hub de l'Innovation Métropole Nice Côte d'Azur.
