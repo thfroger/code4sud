@@ -3,7 +3,7 @@ name: Le Wagon Marseille
 city:
   - marseille
 site: https://www.lewagon.com/fr/marseille
-logo: ''
+logo: /images/uploads/logo lewagon.png
 archived: true
 description: Lancez votre carrière dans la tech, rejoignez nos formations à Marseille
 ---
