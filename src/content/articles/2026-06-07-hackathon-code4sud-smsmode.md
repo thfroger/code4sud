@@ -1,7 +1,8 @@
 ---
-title: "Hackathon Code4Sud × smsmode© : le défi RCS a démarré à Marseille"
-date: 2026-06-07
-category: "Hackathon"
+title: 'Hackathon Code4Sud × smsmode© : le défi RCS a démarré à Marseille'
+date: 2026-06-03
+category: Hackathon
+image: /images/uploads/art_smsmode.jpeg
 ---
 
 Hier matin, le Hackathon Code4Sud × smsmode© a officiellement démarré à Marseille.
