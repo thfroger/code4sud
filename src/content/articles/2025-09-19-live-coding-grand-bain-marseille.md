@@ -1,7 +1,8 @@
 ---
-title: "Challenge live coding au Grand Bain : 30 minutes sans prévisualisation"
+title: 'Challenge live coding au Grand Bain : 30 minutes sans prévisualisation'
 date: 2025-09-19
-category: "Événement"
+category: Événement
+image: /images/uploads/art_codindark.jpeg
 ---
 
 Coder 30 minutes sans prévisualisation ? C'est le challenge de live coding que se sont lancés 20 participants issus de 3 écoles membres de Code4Sud : Simplon Sud, Epitech Marseille et 42 Marseille.
