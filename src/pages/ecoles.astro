@@ -2,7 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const schools = await getCollection('schools');
+const allSchools = await getCollection('schools');
+const schools = allSchools.filter(s => !s.data.archived);
+const archived = allSchools.filter(s => s.data.archived);
 const marseille = schools.filter(s => s.data.city.includes('marseille'));
 const nice = schools.filter(s => s.data.city.includes('nice'));
 
@@ -35,6 +37,9 @@ const all = shuffle(schools);
         <button class="pill active" data-filter="all">Toutes les villes</button>
         <button class="pill" data-filter="marseille">Marseille ({marseille.length})</button>
         <button class="pill" data-filter="nice">Nice ({nice.length})</button>
+        {archived.length > 0 && (
+          <button class="pill pill--archive" data-filter="archive">Archives ({archived.length})</button>
+        )}
       </div>
 
       <div class="schools-grid" id="schools-grid">
@@ -45,12 +50,31 @@ const all = shuffle(schools);
             rel="noopener"
             class="school-card"
             data-cities={school.data.city.join(',')}
+            data-archived="false"
           >
             <div class="school-card-header">
               {school.data.city.map(c => (
                 <span class={`city-dot dot--${c}`}></span>
               ))}
               <span class="city-label">{school.data.city.map(c => c === 'marseille' ? 'Marseille' : 'Nice').join(' · ')}</span>
+            </div>
+            <div class="school-name">{school.data.name}</div>
+            <div class="school-desc">{school.data.description}</div>
+            <span class="school-link">Voir le site →</span>
+          </a>
+        ))}
+        {archived.map((school) => (
+          <a
+            href={school.data.site}
+            target="_blank"
+            rel="noopener"
+            class="school-card school-card--archived"
+            data-cities={school.data.city.join(',')}
+            data-archived="true"
+            style="display:none"
+          >
+            <div class="school-card-header">
+              <span class="archive-badge">Ancienne école membre</span>
             </div>
             <div class="school-name">{school.data.name}</div>
             <div class="school-desc">{school.data.description}</div>
@@ -170,6 +194,33 @@ const all = shuffle(schools);
   color: var(--b600);
 }
 
+.school-card--archived {
+  opacity: 0.6;
+}
+
+.archive-badge {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-secondary);
+  background: var(--gray-light);
+  border: 0.5px solid var(--gray-border);
+  border-radius: 100px;
+  padding: 0.2rem 0.6rem;
+}
+
+.pill--archive {
+  border-color: var(--gray-border);
+  color: var(--gray-secondary);
+}
+
+.pill--archive.active {
+  background: var(--gray-secondary);
+  border-color: var(--gray-secondary);
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .schools-grid { grid-template-columns: repeat(2, 1fr); }
   .school-card:nth-child(3n) { border-right: 0.5px solid var(--gray-border); }
@@ -192,8 +243,14 @@ const all = shuffle(schools);
       pill.classList.add('active');
       const filter = pill.dataset.filter;
       cards.forEach(card => {
-        const cities = (card.dataset.cities || '').split(',');
-        card.style.display = (filter === 'all' || cities.includes(filter)) ? '' : 'none';
+        const isArchived = card.dataset.archived === 'true';
+        if (filter === 'archive') {
+          card.style.display = isArchived ? '' : 'none';
+        } else {
+          if (isArchived) { card.style.display = 'none'; return; }
+          const cities = (card.dataset.cities || '').split(',');
+          card.style.display = (filter === 'all' || cities.includes(filter)) ? '' : 'none';
+        }
       });
     });
   });

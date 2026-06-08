@@ -5,6 +5,7 @@ const schools = defineCollection({
   schema: z.object({
     name: z.string(),
     logo: z.string().optional(),
+    archived: z.boolean().default(false),
     city: z.union([
       z.enum(['marseille', 'nice']),
       z.array(z.enum(['marseille', 'nice']))

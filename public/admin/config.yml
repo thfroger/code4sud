@@ -36,6 +36,11 @@ collections:
         widget: image
         required: false
         hint: Logo de l'école (fond transparent de préférence)
+      - label: Ancienne école membre (archive)
+        name: archived
+        widget: boolean
+        default: false
+        hint: Cocher pour masquer de la page d'accueil et afficher dans la section Archives
       - label: Description courte
         name: description
         widget: text

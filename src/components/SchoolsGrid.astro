@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 
-const schools = await getCollection('schools');
+const allSchools = await getCollection('schools');
+const schools = allSchools.filter(s => !s.data.archived);
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
